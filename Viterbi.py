@@ -7,8 +7,10 @@ import numpy as np
 import pandas as pd
 
 ##suppose we have already have the converged initial probbability, transition matrix and emission matrix
-annotation_map = {'C' : 0, 'N' : 1}
-genome_map = {'A' : 0, 'T' : 1, 'C' : 2, 'G' : 3}
+annotation_map = {'P': 0,'E':1,'I':2,'T':3,'O':4}
+genome_map = {'A' : 0, 'T' : 1, 'C' : 2, 'G' : 3 ,'N' : 4}
+
+
 
 genomes_test = genomes[0:len(annotations)]
 genomes_test = [x.map(genome_map) for x in genomes_test]

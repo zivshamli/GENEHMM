@@ -6,8 +6,8 @@ alpha, beta, r and s, we could update p , A and B to finish a iteration.
 import numpy as np
 import pandas as pd
 
-annotation_map = {'C' : 0, 'N' : 1}
-genome_map = {'A' : 0, 'T' : 1, 'C' : 2, 'G' : 3}
+annotation_map = {'P': 0,'E':1,'I':2,'T':3,'O':4}
+genome_map = {'A' : 0, 'T' : 1, 'C' : 2, 'G' : 3 ,'N' : 4}
 
 def update(genomes, rs, ss):
     genomes_train = [x.map(genome_map) for x in genomes]
