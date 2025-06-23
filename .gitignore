@@ -1,0 +1,28 @@
+# קבצי קומפילציה של Python
+__pycache__/
+*.py[cod]
+*.so
+
+# סביבות עבודה וירטואליות
+venv/
+env/
+
+# קבצי מערכת
+.DS_Store
+Thumbs.db
+
+# קבצי לוגים
+*.log
+
+# הגדרות IDE נפוצות
+.vscode/
+.idea/
+
+# קבצים זמניים
+*.swp
+*.tmp
+*.bak
+
+# קבצי פלט
+/output/
+*.out
