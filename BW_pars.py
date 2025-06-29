@@ -16,7 +16,7 @@ just transformation of the original hidden parameter matrix.
 """
 
 annotation_map = {'P': 0,'E':1,'I':2,'T':3,'O':4}
-genome_map = {'A' : 0, 'T' : 1, 'C' : 2, 'G' : 3 ,'N' : 4}
+genome_map = {'A' : 0, 'T' : 1, 'C' : 2, 'G' : 3 }
 
 def BW_alpha(genomes, A, B, p):
     print("Calculating forward probabilities...")
