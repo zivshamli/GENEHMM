@@ -91,13 +91,20 @@ def main():
     annotations = [pd.Series(x) for x in annotations]
     print('genomes and annotations processed successfully')
     p0, A0, B0 = init_sim(len(np.unique(annotations[0])), len(np.unique(genomes[0])))
+    print(p0)
+    print(A0)
+    print(B0)
     print('start training...')
     ##EM - Loop until p, A, B convergence, we set the convergence threshold as 0.01
     while True:
         alphas = BW_alpha(genomes, A0, B0, p0)
+        print("alphas: "+str(alphas))
         betas = BW_beta(genomes, A0, B0)
+        print("betas: "+str(betas))
         rs = BW_r(alphas, betas, A0, B0)
+        print("rs: "+str(rs))
         ss = BW_s(genomes, alphas, betas, A0, B0)
+        print("ss: "+str(ss))
         p, A, B = update(genomes, rs, ss)
         if (abs(B - B0) < 0.01).all() and (abs(A - A0) < 0.01).all() and (abs(p - p0) < 0.01).all():
             break

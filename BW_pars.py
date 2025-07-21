@@ -32,7 +32,8 @@ def BW_alpha(genomes, A, B, p):
         alpha = np.zeros((A.shape[0], T[d]))
         alpha[:, 0] = p * B[:,obs[0]]
         for t in range(1, T[d]):
-            print("Calculating forward probabilities for genome", d, "at time step", t)
+            if t%1000000 == 0:
+                print("Calculating forward probabilities for genome", d, "at time step", t)
             for j in range(A.shape[0]):
                 alpha[j,t] = sum(alpha[:,(t-1)] * A[:,j] * B[j, obs[t]])
         
@@ -44,6 +45,7 @@ def BW_alpha(genomes, A, B, p):
 
 def BW_beta(genomes, A, B):
     genomes_train = [x.map(genome_map) for x in genomes]
+    genomes_train=genomes_train[0:1]
     D = len(genomes_train)
     T = [len(x) for x in genomes_train]
     betas = []
@@ -52,9 +54,10 @@ def BW_beta(genomes, A, B):
         beta = np.zeros((A.shape[0], T[d]))
         beta[:, (T[d] - 1)] = 1
         for t in reversed(range(T[d] - 1)):
-            print( "Calculating backward probabilities for genome", d, "at time step", t)
+            if t%1000000 == 0:
+                print( "Calculating backward probabilities for genome", d, "at time step", t)
             for i in range(A.shape[0]):
-                beta[i,t] = sum(beta[:, (t+1)] * A[i,:] * B[:, obs[t+1]])
+                    beta[i,t] = sum(beta[:, (t+1)] * A[i,:] * B[:, obs[t+1]])
             beta[:,t] = beta[:,t] / sum(beta[:,t])
             
         betas.append(beta)
@@ -72,7 +75,8 @@ def BW_r(alphas, betas, A, B):
         beta = betas[d]
         
         for t in range(T[d]):
-            print("Calculating hidden parameter matrix r for genome", d, "at time step", t)
+            if t%1000000 == 0:
+                print("Calculating hidden parameter matrix r for genome", d, "at time step", t)
             r[:,t] = alpha[:,t] * beta[:,t] / sum(alpha[:,t] * beta[:,t])
         
     
@@ -94,14 +98,15 @@ def BW_s(genomes, alphas, betas, A, B):
         obs = genomes_train[d]
         
         for t in range(T[d] - 1):
-            print("Calculating hidden parameter matrix s for genome", d, "at time step", t)
-            fb = A * B[:, obs[t+1]] * beta[:,(t+1)] * alpha[:,t].reshape((alpha.shape[0], 1))
+            if t%1000000 == 0:
+                print("Calculating hidden parameter matrix s for genome", d, "at time step", t)
+            if t+1 < len(obs):
+                fb = A * B[:, obs[t+1]] * beta[:,(t+1)] * alpha[:,t].reshape((alpha.shape[0], 1))
             s[:,:,t] = fb / sum(sum(fb))
     
         ss.append(s)
     
     return ss
-        
         
         
         

@@ -11,6 +11,8 @@ genome_map = {'A' : 0, 'T' : 1, 'C' : 2, 'G' : 3 }
 
 def update(genomes, rs, ss):
     genomes_train = [x.map(genome_map) for x in genomes]
+    genomes_train = genomes_train[0:1]  # For testing, use only the first genome
+    ##update p, A and B
     D = len(genomes_train)
     
     ##update p
