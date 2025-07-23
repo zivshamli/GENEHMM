@@ -106,7 +106,7 @@ def main():
         ss = BW_s(genomes, alphas, betas, A0, B0)
         print("ss: "+str(ss))
         p, A, B = update(genomes, rs, ss)
-        if (abs(B - B0) < 0.01).all() and (abs(A - A0) < 0.01).all() and (abs(p - p0) < 0.01).all():
+        if (abs(B - B0) < 0.1).all() and (abs(A - A0) < 0.1).all() and (abs(p - p0) < 0.1).all():
             break
         else:
             p0 = p
@@ -117,7 +117,11 @@ def main():
             print(B)
 
     
-    return (p, A, B)
+    # Save parameters to files
+    np.save('p.npy', p)
+    np.save('A.npy', A)
+    np.save('B.npy', B)
+    print("Parameters saved successfully to p.npy, A.npy, B.npy")
     
     
     

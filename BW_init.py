@@ -13,15 +13,21 @@ def init_sim(hid_num, obs_num):
     """    
 
 ## initialize initial probability of hidden states p
-    p = np.random.random(hid_num)
-    p = p / p.sum()
+    p = np.array([0,0,0,0,1])
+
 
 ## initialize transition matrix A
-    A = np.random.random((hid_num, hid_num))
-    A = A / A.sum(1).reshape((hid_num, 1))
+    A =  np.array([
+    [0.95964685, 0.021879948, 0.008732786, 0.000143947, 0.009596468],
+    [0.018512383, 0.828294542, 0.134680692, 0.018470968, 0.0000414147],
+    [0.006487174, 0.138308247, 0.847996608, 0.007207971, 0],
+    [0.000672043, 0.02078533, 0.006864439, 0.960061444, 0.011616743],
+    [0.010861057, 0, 0, 0.010665362, 0.978473581]
+])
+   # A = A / A.sum(1).reshape((hid_num, 1))
 
 ## initialize emission matrix B
     B = np.random.random((hid_num, obs_num))
-    B = B / B.sum(1).reshape((hid_num, 1))
+    #B = B / B.sum(1).reshape((hid_num, 1))
     
     return (p, A, B)

@@ -8,7 +8,7 @@ import pandas as pd
 
 ##suppose we have already have the converged initial probbability, transition matrix and emission matrix
 annotation_map = {'P': 0,'E':1,'I':2,'T':3,'O':4}
-genome_map = {'A' : 0, 'T' : 1, 'C' : 2, 'G' : 3 ,'N' : 4}
+genome_map = {'A' : 0, 'T' : 1, 'C' : 2, 'G' : 3 }
 
 
 
@@ -48,6 +48,10 @@ def viterbi(genomes, A, B, p):
 
 
 def main():
+    p = np.load("p.npy")
+    A = np.load("A.npy")
+    B = np.load("B.npy")
+    print("Parameters loaded successfully from p.npy, A.npy, B.npy")
     annotations_test = viterbi(genomes_test, A, B, p)
     precision = np.mean([np.mean(x == y) for x,y in zip(annotations_test, annotations)])  
     
