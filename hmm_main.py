@@ -106,7 +106,7 @@ def main():
         ss = BW_s(genomes, alphas, betas, A0, B0)
         print("ss: "+str(ss))
         p, A, B = update(genomes, rs, ss)
-        if (abs(B - B0) < 0.1).all() and (abs(A - A0) < 0.1).all() and (abs(p - p0) < 0.1).all():
+        if (abs(B - B0) < 0.03).all() and (abs(A - A0) < 0.03).all() and (abs(p - p0) < 0.03).all():
             break
         else:
             p0 = p

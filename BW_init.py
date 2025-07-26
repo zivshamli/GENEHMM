@@ -27,7 +27,14 @@ def init_sim(hid_num, obs_num):
    # A = A / A.sum(1).reshape((hid_num, 1))
 
 ## initialize emission matrix B
-    B = np.random.random((hid_num, obs_num))
+    B = np.array([
+    [0.3, 0.3, 0.2, 0.2],  # 0: P - Promoter
+    [0.1, 0.1, 0.4, 0.4],  # 1: E - Exon
+    [0.2, 0.2, 0.3, 0.3],  # 2: I - Intron
+    [0.3, 0.2, 0.3, 0.2],  # 3: T - Terminator
+    [0.25, 0.25, 0.25, 0.25]  # 4: O - Other
+    ])
+   # B = np.random.random((hid_num, obs_num))
     #B = B / B.sum(1).reshape((hid_num, 1))
     
     return (p, A, B)

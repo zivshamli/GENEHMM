@@ -21,7 +21,7 @@ genome_map = {'A' : 0, 'T' : 1, 'C' : 2, 'G' : 3 }
 def BW_alpha(genomes, A, B, p):
     print("Calculating forward probabilities...")
     genomes_train = [x.map(genome_map) for x in genomes]
-    genomes_train=genomes_train[0:1]
+    genomes_train=genomes_train[0:1] 
     D = len(genomes_train)
     T = [len(x) for x in genomes_train]
     print("Number of genomes: ", D)
@@ -45,7 +45,7 @@ def BW_alpha(genomes, A, B, p):
 
 def BW_beta(genomes, A, B):
     genomes_train = [x.map(genome_map) for x in genomes]
-    genomes_train=genomes_train[0:1]
+    genomes_train=genomes_train[0:1]  # For testing, use only the first genome
     D = len(genomes_train)
     T = [len(x) for x in genomes_train]
     betas = []
